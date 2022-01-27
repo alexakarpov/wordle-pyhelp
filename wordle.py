@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--pinned", type=str, help="the pattern of the regexp-ish form 'a.b..' for the 'green' letters", default=".....")
-    parser.add_argument("-s", "--some", type=str, help="characters present in unknown position", default="")
+    parser.add_argument("-s", "--some", type=str, help="characters present in unknown position (NOT READY YET)", default="")
     parser.add_argument("-x", "--exclude", type=str, help="eliminated characters", default="")
     args = parser.parse_args()
 
