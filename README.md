@@ -4,5 +4,3 @@ a dictionary file and more "cheats" for playing. Move along if you think it's no
 # ¯\_(ツ)_/¯
 
 python wordle.py -h
-
-note that -s isn't completed yet )
