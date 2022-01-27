@@ -18,6 +18,10 @@ def exclude(words, chars):
     res = list(filter(lambda w: w != 'xxxxx', words))
     return res
 
+def somewhere(words, chars):
+    s = set(chars)
+    return list(filter(lambda w: len(set(w).intersection(s)) == len(s), words))
+
 def pin(words, patstr):
     pat = re.compile(patstr)
     return list(filter(lambda w: pat.match(w), words))
@@ -35,6 +39,9 @@ if __name__ == "__main__":
         if args.exclude != "":
             excluded = exclude(words, args.exclude)
             words = excluded
+        if args.some != "":
+            somew = somewhere(words, args.some)
+            words = somew
         if args.pinned != "":
             pinned = pin(words, args.pinned)
             words = pinned

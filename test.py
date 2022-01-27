@@ -1,5 +1,5 @@
 import unittest
-from wordle import split, exclude, pin
+from wordle import split, exclude, pin, somewhere
 
 class TestWorldleHelperMethods(unittest.TestCase):
 
@@ -30,6 +30,18 @@ class TestWorldleHelperMethods(unittest.TestCase):
     pinned = pin(words, "b....")
     assert len(pinned) == 3
     assert "babak" in pinned and "blpla" in pinned and "bibop" in pinned
+
+  def test_somewhere(self):
+    words = ["seabx", "acsce", "aefgh", "oseqr", "ascvb", "xiopl", "laleg"]
+    assert len(somewhere(words, "ase")) == 2
+
+  def test_somewhere2(self):
+    words = ["abcde", "abcdf", "abcdx", "oseqr", "ascvb", "xiopb", "laleg"]
+    assert somewhere(words, "bed") == ['abcde']
+
+  def test_somewhere3(self):
+    words = ["aopde", "oioio", "abcdx", "oseqr", "ascvb", "xiopb", "laleg"]
+    assert somewhere(words, "poi") == ['xiopb']
 
 
 if __name__ == '__main__':
