@@ -1,5 +1,5 @@
 import unittest
-from wordle.wordle import split, exclude, pin
+from wordle import split, exclude, pin
 
 class TestWorldleHelperMethods(unittest.TestCase):
 
