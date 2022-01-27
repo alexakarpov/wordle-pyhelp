@@ -31,18 +31,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     with open("dictionary.txt") as f:
-        lines = f.readlines()
-        lines = list(map(lambda line: line.lower().strip(), lines))
-        words = list(filter(lambda w: len(w) == 5, lines))
-        res = words
+        words = f.readlines()
         if args.exclude != "":
             excluded = exclude(words, args.exclude)
-            print(f"{len(excluded)} after exclusion")
-            res = excluded
-        if args.fixed != "":
-            fixed = pin(res, args.fixed)
-            res = fixed
-            print(f"got {len(fixed)} remaining")
+            words = excluded
+        if args.pinned != "":
+            pinned = pin(words, args.pinned)
+            words = pinned
 
-    for w in res:
-        print(w)
+    print(f"{len(words)} words remained:")
+    for w in words:
+        print(w, end='')
