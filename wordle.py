@@ -30,7 +30,7 @@ if __name__ == "__main__":
     parser.add_argument("-x", "--exclude", type=str, help="eliminated characters", default="")
     args = parser.parse_args()
 
-    with open("english3.txt") as f:
+    with open("dictionary.txt") as f:
         lines = f.readlines()
         lines = list(map(lambda line: line.lower().strip(), lines))
         words = list(filter(lambda w: len(w) == 5, lines))
