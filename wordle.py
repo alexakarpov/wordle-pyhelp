@@ -14,8 +14,9 @@ def exclude(words, chars):
     for i in my_range(0, l-1, 1):
         for c in chars:
             if c in words[i]:
-                words[i] = 'xxxxx'
-    res = list(filter(lambda w: w != 'xxxxx', words))
+                words[i] = 'X'
+                continue
+    res = list(filter(lambda w: w != 'X', words))
     return res
 
 def somewhere(words, chars):
@@ -46,6 +47,6 @@ if __name__ == "__main__":
             pinned = pin(words, args.pinned)
             words = pinned
 
-    print(f"{len(words)} words remained:")
+    print(f"{len(words)} words remain:")
     for w in words:
         print(w, end='')
