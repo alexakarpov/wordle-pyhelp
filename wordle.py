@@ -1,5 +1,7 @@
-import argparse
-import re
+#!/usr/bin/env python3
+
+import argparse, os, sys, re
+
 
 def my_range(start, end, step):
     while start <= end:
@@ -33,10 +35,14 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--pinned", type=str, help="the pattern of the regexp-ish form 'a.b..' for the 'green' letters", default=".....")
     parser.add_argument("-s", "--some", type=str, help="characters present in unknown position (NOT READY YET)", default="")
     parser.add_argument("-x", "--exclude", type=str, help="eliminated characters", default="")
+    parser.add_argument("dictionary", help="words list to use")
     args = parser.parse_args()
 
-    with open("dictionary.txt") as f:
+    dict = args.dictionary
+
+    with open(dict) as f:
         words = f.readlines()
+
         if args.exclude != "":
             excluded = exclude(words, args.exclude)
             words = excluded
@@ -47,6 +53,14 @@ if __name__ == "__main__":
             pinned = pin(words, args.pinned)
             words = pinned
 
-    print(f"{len(words)} words remain:")
-    for w in words:
-        print(w, end='')
+        print(f"{len(words)} words remain:")
+
+        try:
+            for w in words:
+                print(w, end='')
+        except BrokenPipeError:
+            # Python flushes standard streams on exit; redirect remaining output
+            # to devnull to avoid another BrokenPipeError at shutdown
+            devnull = os.open(os.devnull, os.O_WRONLY)
+            os.dup2(devnull, sys.stdout.fileno())
+            sys.exit(1)  # Python exits with error code 1 on EPIPE
