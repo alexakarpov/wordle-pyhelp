@@ -44,14 +44,11 @@ if __name__ == "__main__":
         words = f.readlines()
 
         if args.exclude != "":
-            excluded = exclude(words, args.exclude)
-            words = excluded
+            words = exclude(words, args.exclude)
         if args.some != "":
-            somew = somewhere(words, args.some)
-            words = somew
+            words = somewhere(words, args.some)
         if args.pinned != "":
-            pinned = pin(words, args.pinned)
-            words = pinned
+            words = pin(words, args.pinned)
 
         print(f"{len(words)} words remain:")
 
