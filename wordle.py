@@ -32,8 +32,8 @@ def pin(words, patstr):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--pinned", type=str, help="the pattern of the regexp-ish form 'a.b..' for the 'green' letters", default=".....")
-    parser.add_argument("-s", "--some", type=str, help="characters present in unknown position (NOT READY YET)", default="")
+    parser.add_argument("-p", "--pin", type=str, help="the pattern of the regexp-ish form 'a.b..' for the 'green' letters", default=".....")
+    parser.add_argument("-s", "--somewhere", type=str, help="characters present in unknown positions ('yellow' letters)", default="")
     parser.add_argument("-x", "--exclude", type=str, help="eliminated characters", default="")
     parser.add_argument("dictionary", help="words list to use")
     args = parser.parse_args()
